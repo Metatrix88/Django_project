@@ -28,7 +28,7 @@ class Series(models.Model):
     def __str__(self) -> str:
         return str(self.pk) + " " + self.name
 
-class The_authors(models.Model):
+class TheAuthors(models.Model):
     name = models.CharField(
         verbose_name="Name",
         max_length=30
@@ -45,7 +45,7 @@ class The_authors(models.Model):
     def __str__(self) -> str:
         return str(self.pk) + " " + self.name
 
-class Publishing_house(models.Model):
+class PublishingHouse(models.Model):
     name = models.CharField(
         verbose_name="Publishing house name",
         max_length=30
@@ -55,3 +55,5 @@ class Publishing_house(models.Model):
         blank=True,
         null=True
     )
+    def __str__(self) -> str:
+        return str(self.pk) + " " + self.name

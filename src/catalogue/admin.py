@@ -6,5 +6,5 @@ from . import models
 
 admin.site.register(models.Genre)
 admin.site.register(models.Series)
-admin.site.register(models.The_authors)
-admin.site.register(models.Publishing_house)
+admin.site.register(models.TheAuthors)
+admin.site.register(models.PublishingHouse)
