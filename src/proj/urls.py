@@ -26,5 +26,22 @@ urlpatterns = [
     path('genre_delete/<int:pk>/', catalog.GenreDeleteView.as_view()),
     path('genre_edit/<int:pk>/', catalog.GenreUpdateView.as_view()),
 
+    path('series_list/', catalog.SeriesListView.as_view()),
+    path('series_add/', catalog.SeriesAddView.as_view()),
+    path('series/<int:pk>/', catalog.SeriesDetailView.as_view()),
+    path('series_edit/<int:pk>/', catalog.SeriesUpdateView.as_view()),
+    path('series_delete/<int:pk>/', catalog.SeriesDeleteView.as_view()),
+
+    path('author_list/', catalog.TheAuthorsListView.as_view()),
+    path('author_add/', catalog.TheAuthorsAddView.as_view()),
+    path('author/<int:pk>/', catalog.TheAuthorsDetailView.as_view()),
+    path('author_edit/<int:pk>/', catalog.TheAuthorsUpdateView.as_view()),
+    path('author_delete/<int:pk>/', catalog.TheAuthorsDeleteView.as_view()),
+
+    path('publishinghouse_list/', catalog.PublishingHouseListView.as_view()),
+    path('publishinghouse_add/', catalog.PublishingHouseAddView.as_view()),
+    path('publishinghouse/<int:pk>/', catalog.PublishingHouseDetailView.as_view()),
+    path('publishinghouse_edit/<int:pk>/', catalog.PublishingHouseUpdateView.as_view()),
+    path('publishinghouse_delete/<int:pk>/', catalog.PublishingHouseDeleteView.as_view()),
 
 ]

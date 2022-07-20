@@ -7,12 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>List of genres</h1>
+    <h1>List of series</h1>
     Date: {{ today }} <br>
-    <li><a href="/genre_add/">Add genre</a></li>
+    <li><a href="/series_add/">Add series</a></li>
     <Ul>
-        {% for genre in object_list %}
-        <li><a href="/genre/{{ genre.pk }}/">{{ genre.name }}</a> <a href="/genre_edit/{{ genre.pk }}/">(EDIT)</a> <a href="/genre_delete/{{ genre.pk }}/">(DELETE)</a></li>
+        {% for series in object_list %}
+        <li><a href="/series/{{ series.pk }}/">{{ series.name }}</a> <a href="/series_edit/{{ series.pk }}/">(EDIT)</a> <a href="/series_delete/{{ series.pk }}/">(DELETE)</a></li>
         {% endfor%}
     </Ul>
 </body>
