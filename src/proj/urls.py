@@ -16,9 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from catalogue import views
+from catalogue import views as catalog
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('catalog/', views.catalogue),
+    path('genre_list/', catalog.GenreListView.as_view()),
+    path('genre/<int:pk>/', catalog.GenreDetailView.as_view()),
+    path('genre_add/', catalog.GenreAddView.as_view()),
+    path('genre_delete/<int:pk>/', catalog.GenreDeleteView.as_view()),
+    path('genre_edit/<int:pk>/', catalog.GenreUpdateView.as_view()),
+
+
 ]
