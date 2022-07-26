@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 from datetime import datetime
 from catalogue import models
@@ -19,26 +19,34 @@ class GenreListView(generic.ListView):
         qs = self.model.objects.all()
         return qs
 
+
 class GenreDetailView(generic.DetailView):
     template_name = 'catalogue/genre_view.html'
     model = models.Genre
+
+    def get_success_url(self):
+        return reverse_lazy("cat:genre-det", kwargs= {'pk': self.object.pk})
 
 class GenreAddView(generic.CreateView):
     template_name = 'catalogue/genre_add.html'
     model = models.Genre
     form_class = forms.AddGenreForm
-    success_url = '/genre_list/'
+
+    def get_success_url(self):
+        return reverse_lazy("cat:genre-list")
 
 class GenreDeleteView(generic.DeleteView):
     template_name = 'catalogue/genre_delete.html'
     model = models.Genre
-    success_url = '/genre_list/'
+
+    def get_success_url(self):
+        return reverse_lazy("cat:genre-list")
 
 class GenreUpdateView(generic.UpdateView):
     template_name = 'catalogue/genre_update.html'
     model = models.Genre
     form_class = forms.AddGenreForm
-    success_url = '/genre_list/'
+    success_url = reverse_lazy("cat:genre-list")
 
 
 class SeriesListView(generic.ListView):
@@ -54,39 +62,33 @@ class SeriesListView(generic.ListView):
         qs = self.model.objects.all()
         return qs
 
+class SeriesDetailView(generic.DetailView):
+    template_name = 'catalogue/series_view.html'
+    model = models.Series
+
+    def get_success_url(self):
+        return reverse_lazy("cat:series-det", kwargs= {'pk': self.object.pk})
+
 class SeriesAddView(generic.CreateView):
     template_name = 'catalogue/series_add.html'
     model = models.Series
     form_class = forms.AddSeriesForm
-    success_url = '/series_list/'
 
-class SeriesDetailView(generic.DetailView):
-    template_name = 'catalogue/series_view.html'
+    def get_success_url(self):
+        return reverse_lazy("cat:series-list")
+
+class SeriesDeleteView(generic.DeleteView):
+    template_name = 'catalogue/series_delete.html'
     model = models.Series
+
+    def get_success_url(self):
+        return reverse_lazy("cat:series-list")
 
 class SeriesUpdateView(generic.UpdateView):
     template_name = 'catalogue/series_update.html'
     model = models.Series
     form_class = forms.AddSeriesForm
-    success_url = '/series_list/'
-
-class SeriesDeleteView(generic.DeleteView):
-    template_name = 'catalogue/series_delete.html'
-    model = models.Series
-    success_url = '/series_list/'
-
-    class SeriesListView(generic.ListView):
-        template_name = 'catalogue/series_list.html'
-    model = models.Series
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context['today'] = datetime.now().date
-        return context
-
-    def get_queryset(self):
-        qs = self.model.objects.all()
-        return qs
+    success_url = reverse_lazy("cat:series-list")
 
 
 class TheAuthorsListView(generic.ListView):
@@ -101,25 +103,34 @@ class TheAuthorsListView(generic.ListView):
     def get_queryset(self):
         qs = self.model.objects.all()
         return qs
-class TheAuthorsAddView(generic.CreateView):
-    template_name = 'catalogue/author_add.html'
-    model = models.TheAuthors
-    form_class = forms.AddTheAuthorsForm
-    success_url = '/author_list/'
 
 class TheAuthorsDetailView(generic.DetailView):
     template_name = 'catalogue/author_view.html'
     model = models.TheAuthors
 
+    def get_success_url(self):
+        return reverse_lazy("cat:author-det", kwargs= {'pk': self.object.pk})
+
+class TheAuthorsAddView(generic.CreateView):
+    template_name = 'catalogue/author_add.html'
+    model = models.TheAuthors
+    form_class = forms.AddTheAuthorsForm
+
+    def get_success_url(self):
+        return reverse_lazy("cat:author-list")
+
+class TheAuthorsDeleteView(generic.DeleteView):
+    template_name = 'catalogue/author_delete.html'
+    model = models.TheAuthors
+
+    def get_success_url(self):
+        return reverse_lazy("cat:author-list")
+
 class TheAuthorsUpdateView(generic.UpdateView):
     template_name = 'catalogue/author_update.html'
     model = models.TheAuthors
     form_class = forms.AddTheAuthorsForm
-    success_url = '/author_list/'
-class TheAuthorsDeleteView(generic.DeleteView):
-    template_name = 'catalogue/author_delete.html'
-    model = models.TheAuthors
-    success_url = '/author_list/'
+    success_url = reverse_lazy("cat:author-list")
 
 class PublishingHouseListView(generic.ListView):
     template_name = 'catalogue/publishinghouse_list.html'
@@ -134,23 +145,30 @@ class PublishingHouseListView(generic.ListView):
         qs = self.model.objects.all()
         return qs
 
+class PublishingHouseDetailView(generic.DetailView):
+    template_name = 'catalogue/publishinghouse_view.html'
+    model = models.PublishingHouse
+
+    def get_success_url(self):
+        return reverse_lazy("cat:publishinghouse-det", kwargs= {'pk': self.object.pk})
+
 class PublishingHouseAddView(generic.CreateView):
     template_name = 'catalogue/publishinghouse_add.html'
     model = models.PublishingHouse
     form_class = forms.AddPublishingHouseForm
-    success_url = '/publishinghouse_list/'
 
-class PublishingHouseDetailView(generic.DetailView):
-    template_name = 'catalogue/publishinghouse_view.html'
+    def get_success_url(self):
+        return reverse_lazy("cat:publishinghouse-list")
+
+class PublishingHouseDeleteView(generic.DeleteView):
+    template_name = 'catalogue/publishinghouse_delete.html'
     model = models.PublishingHouse
+
+    def get_success_url(self):
+        return reverse_lazy("cat:publishinghouse-list")
 
 class PublishingHouseUpdateView(generic.UpdateView):
     template_name = 'catalogue/publishinghouse_update.html'
     model = models.PublishingHouse
     form_class = forms.AddPublishingHouseForm
-    success_url = '/publishinghouse_list/'
-
-class PublishingHouseDeleteView(generic.DeleteView):
-    template_name = 'catalogue/publishinghouse_delete.html'
-    model = models.PublishingHouse
-    success_url = '/publishinghouse_list/'
+    success_url = reverse_lazy("cat:publishinghouse-list")

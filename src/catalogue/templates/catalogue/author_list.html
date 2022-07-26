@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>List of authors</h1>
-    Date: {{ today }} <br>
-    <li><a href="/author_add/">Add author</a></li>
-    <Ul>
-        {% for author in object_list %}
-        <li><a href="/author/{{ author.pk }}/">{{ author.name }}</a> <a href="/author_edit/{{ author.pk }}/">(EDIT)</a> <a href="/author_delete/{{ author.pk }}/">(DELETE)</a></li>
-        {% endfor%}
-    </Ul>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %} List of authors {% endblock title %}
+
+{% block header %} List of authors {% endblock header %}
+
+{% block body %}
+Date: {{ today }} <br>
+
+<table border='1'>
+    <tr><td>name an author</td><td>surname an author</td><td>biography an author</td><td> edit an author </td><td>delete an author</td></tr>
+    {% for author in object_list %}
+        <tr><td>{{ author.name }}</td><td>{{ author.surname }}</td><td><a href="{% url 'cat:author-det' author.pk %}"> biography </a></td><td><a href="{% url 'cat:author-edit' author.pk %}">edit</a></td><td><a href="{% url 'cat:author-del' author.pk %}">delete</a></td></tr>
+    {% endfor%}
+</table><br>
+<li><a href="{% url 'cat:author-add' %}">Add an author</a></li>
+
+
+{% endblock body %}

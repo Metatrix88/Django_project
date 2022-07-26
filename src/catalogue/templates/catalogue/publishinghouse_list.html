@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>List of publishing house</h1>
-    Date: {{ today }} <br>
-    <li><a href="/publishinghouse_add/">Add publishing house</a></li>
-    <Ul>
-        {% for publishinghouse in object_list %}
-        <li><a href="/publishinghouse/{{ publishinghouse.pk }}/">{{ publishinghouse.name }}</a> <a href="/publishinghouse_edit/{{ publishinghouse.pk }}/">(EDIT)</a> <a href="/publishinghouse_delete/{{ publishinghouse.pk }}/">(DELETE)</a></li>
-        {% endfor%}
-    </Ul>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %} List of publishing house {% endblock title %}
+
+{% block header %} List of publishing house {% endblock header %}
+
+{% block body %}
+Date: {{ today }} <br>
+
+<table border='1'>
+    <tr><td>name a publishing house</td><td>description a publishing house</td><td> edit a publishing house</td><td>delete a publishing house</td></tr>
+    {% for publishinghouse in object_list %}
+        <tr><td>{{ publishinghouse.name }}</td><td><a href="{% url 'cat:publishinghouse-det' publishinghouse.pk %}"> description </a></td><td><a href="{% url 'cat:publishinghouse-edit' publishinghouse.pk %}">edit</a></td><td><a href="{% url 'cat:publishinghouse-del' publishinghouse.pk %}">delete</a></td></tr>
+    {% endfor%}
+</table><br>
+<li><a href="{% url 'cat:publishinghouse-add' %}">Add a publishing house</a></li>
+
+
+{% endblock body %}

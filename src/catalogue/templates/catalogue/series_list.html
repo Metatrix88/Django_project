@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>List of series</h1>
-    Date: {{ today }} <br>
-    <li><a href="/series_add/">Add series</a></li>
-    <Ul>
-        {% for series in object_list %}
-        <li><a href="/series/{{ series.pk }}/">{{ series.name }}</a> <a href="/series_edit/{{ series.pk }}/">(EDIT)</a> <a href="/series_delete/{{ series.pk }}/">(DELETE)</a></li>
-        {% endfor%}
-    </Ul>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %} List of series {% endblock title %}
+
+{% block header %} List of series {% endblock header %}
+
+{% block body %}
+Date: {{ today }} <br>
+
+<table border='1'>
+    <tr><td>name a series</td><td>description a series</td><td> edit a series</td><td>delete a series</td></tr>
+    {% for series in object_list %}
+        <tr><td>{{ series.name }}</td><td><a href="{% url 'cat:series-det' series.pk %}"> description </a></td><td><a href="{% url 'cat:series-edit' series.pk %}">edit</a></td><td><a href="{% url 'cat:series-del' series.pk %}">delete</a></td></tr>
+    {% endfor%}
+</table><br>
+<li><a href="{% url 'cat:series-add' %}">Add a series</a></li>
+
+
+{% endblock body %}

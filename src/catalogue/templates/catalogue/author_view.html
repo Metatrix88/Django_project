@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Author name</title>
-</head>
-<body>
-    <h1>{{ object.name }}</h1>
+{% extends 'base.html' %}
+
+{% block title %} Author - {{ object.name }} {% endblock title %}
+
+{% block header %} Author - {{ object.name }} {% endblock header %}
+
+{% block body %}
     <b>Name:</b> {{ object.name }}<br>
     <b>Surname:</b> {{ object.surname }} <br>
     <b>Biography:</b> {{ object.biography }} <br>
-</body>
-</html>
+{% endblock body %}
