@@ -28,7 +28,7 @@ class Series(models.Model):
     def __str__(self) -> str:
         return str(self.pk) + " " + self.name
 
-class TheAuthors(models.Model):
+class TheAuthor(models.Model):
     name = models.CharField(
         verbose_name="Name",
         max_length=30

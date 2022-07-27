@@ -15,11 +15,11 @@ urlpatterns = [
     path('series_delete/<int:pk>/', views.SeriesDeleteView.as_view(), name="series-del"),
     path('series_edit/<int:pk>/', views.SeriesUpdateView.as_view(), name="series-edit"),
 
-    path('author_list/', views.TheAuthorsListView.as_view(), name="author-list"),
-    path('author/<int:pk>/', views.TheAuthorsDetailView.as_view(), name="author-det"),
-    path('author_add/', views.TheAuthorsAddView.as_view(), name="author-add"),
-    path('author_delete/<int:pk>/', views.TheAuthorsDeleteView.as_view(), name="author-del"),
-    path('author_edit/<int:pk>/', views.TheAuthorsUpdateView.as_view(), name="author-edit"),
+    path('author_list/', views.TheAuthorListView.as_view(), name="author-list"),
+    path('author/<int:pk>/', views.TheAuthorDetailView.as_view(), name="author-det"),
+    path('author_add/', views.TheAuthorAddView.as_view(), name="author-add"),
+    path('author_delete/<int:pk>/', views.TheAuthorDeleteView.as_view(), name="author-del"),
+    path('author_edit/<int:pk>/', views.TheAuthorUpdateView.as_view(), name="author-edit"),
 
     path('publishinghouse_list/', views.PublishingHouseListView.as_view(), name="publishinghouse-list"),
     path('publishinghouse/<int:pk>/', views.PublishingHouseDetailView.as_view(), name="publishinghouse-det"),

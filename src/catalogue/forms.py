@@ -15,9 +15,9 @@ class AddSeriesForm(forms.ModelForm):
         model = models.Series
         fields = '__all__'
 
-class AddTheAuthorsForm(forms.ModelForm):
+class AddTheAuthorForm(forms.ModelForm):
     class Meta:
-        model = models.TheAuthors
+        model = models.TheAuthor
         fields = '__all__'
 
 class AddPublishingHouseForm(forms.ModelForm):

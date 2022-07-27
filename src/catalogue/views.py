@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from datetime import datetime
-from catalogue import models
-from catalogue import forms
+from . import models
+from . import forms
 
 # Create your views here.
 
@@ -91,9 +91,9 @@ class SeriesUpdateView(generic.UpdateView):
     success_url = reverse_lazy("cat:series-list")
 
 
-class TheAuthorsListView(generic.ListView):
+class TheAuthorListView(generic.ListView):
     template_name = 'catalogue/author_list.html'
-    model = models.TheAuthors
+    model = models.TheAuthor
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -104,32 +104,32 @@ class TheAuthorsListView(generic.ListView):
         qs = self.model.objects.all()
         return qs
 
-class TheAuthorsDetailView(generic.DetailView):
+class TheAuthorDetailView(generic.DetailView):
     template_name = 'catalogue/author_view.html'
-    model = models.TheAuthors
+    model = models.TheAuthor
 
     def get_success_url(self):
         return reverse_lazy("cat:author-det", kwargs= {'pk': self.object.pk})
 
-class TheAuthorsAddView(generic.CreateView):
+class TheAuthorAddView(generic.CreateView):
     template_name = 'catalogue/author_add.html'
-    model = models.TheAuthors
-    form_class = forms.AddTheAuthorsForm
+    model = models.TheAuthor
+    form_class = forms.AddTheAuthorForm
 
     def get_success_url(self):
         return reverse_lazy("cat:author-list")
 
-class TheAuthorsDeleteView(generic.DeleteView):
+class TheAuthorDeleteView(generic.DeleteView):
     template_name = 'catalogue/author_delete.html'
-    model = models.TheAuthors
+    model = models.TheAuthor
 
     def get_success_url(self):
         return reverse_lazy("cat:author-list")
 
-class TheAuthorsUpdateView(generic.UpdateView):
+class TheAuthorUpdateView(generic.UpdateView):
     template_name = 'catalogue/author_update.html'
-    model = models.TheAuthors
-    form_class = forms.AddTheAuthorsForm
+    model = models.TheAuthor
+    form_class = forms.AddTheAuthorForm
     success_url = reverse_lazy("cat:author-list")
 
 class PublishingHouseListView(generic.ListView):
