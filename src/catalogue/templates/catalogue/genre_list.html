@@ -7,13 +7,24 @@
 {% block body %}
 Date: {{ today }} <br>
 
-<table border='1'>
-    <tr><td>name a genre</td><td>description a genre</td><td> edit a genre </td><td>delete a genre</td></tr>
-    {% for genre in object_list %}
-        <tr><td>{{ genre.name }}</td><td><a href="{% url 'cat:genre-det' genre.pk %}"> description </a></td><td><a href="{% url 'cat:genre-edit' genre.pk %}">edit</a></td><td><a href="{% url 'cat:genre-del' genre.pk %}">delete</a></td></tr>
-    {% endfor%}
-</table><br>
-<li><a href="{% url 'cat:genre-add' %}">Add a genre</a></li>
-
+<table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">pk</th>
+            <th scope="col">name</th>
+            <th scope="col">actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for genre in object_list %}
+        <tr>
+            <td>{{ genre.pk }}</td>
+            <td>{{ genre.name }}</td>
+            <td><a href="{% url 'cat:genre-det' genre.pk %}"><i class="bi bi-eye"></i></a><a href="{% url 'cat:genre-edit' genre.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'cat:genre-del' genre.pk %}"><i class="bi bi-trash"></i></a></td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+<li><a class="btn btn-primary" href="{% url 'cat:genre-add' %}" role="button">Add a genre</a></li>
 
 {% endblock body %}

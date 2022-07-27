@@ -5,5 +5,8 @@
 {% block header %} Genre - {{ object.name }} {% endblock header %}
 
 {% block body %}
+<form action="" method="get">
+    {% csrf_token %}
     <b>Description:</b> {{ object.description }}
+</form>
 {% endblock body %}

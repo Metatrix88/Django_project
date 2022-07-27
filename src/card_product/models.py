@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 class Book(models.Model):
     name = models.CharField(
@@ -63,7 +64,7 @@ class Book(models.Model):
         blank=True,
         null=True
     )
-    Age_restrictions = models.IntegerField(
+    age_restrictions = models.IntegerField(
         verbose_name="Age restrictions",
         blank=True,
         null=True
@@ -79,9 +80,8 @@ class Book(models.Model):
         blank=True,
         null=True
     )
-    active = models.CharField(
+    active = models.BooleanField(
         verbose_name="Are available (yes/no)",
-        max_length=10,
         blank=True,
         null=True
     )
@@ -91,14 +91,15 @@ class Book(models.Model):
         null=True
     )
     data_register = models.DateField(
+        editable=True,
         verbose_name="Date of entry into the catalog",
-        blank=True,
-        null=True
+        auto_now_add=True
     )
     data_changes = models.DateField(
+        editable=True,
         verbose_name="Date of the last change of the card",
-        blank=True,
-        null=True
+        auto_now=True
+
     )
     def __str__(self):
         return self.name

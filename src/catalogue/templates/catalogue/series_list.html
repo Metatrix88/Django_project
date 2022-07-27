@@ -7,13 +7,24 @@
 {% block body %}
 Date: {{ today }} <br>
 
-<table border='1'>
-    <tr><td>name a series</td><td>description a series</td><td> edit a series</td><td>delete a series</td></tr>
-    {% for series in object_list %}
-        <tr><td>{{ series.name }}</td><td><a href="{% url 'cat:series-det' series.pk %}"> description </a></td><td><a href="{% url 'cat:series-edit' series.pk %}">edit</a></td><td><a href="{% url 'cat:series-del' series.pk %}">delete</a></td></tr>
-    {% endfor%}
-</table><br>
-<li><a href="{% url 'cat:series-add' %}">Add a series</a></li>
-
+<table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">pk</th>
+            <th scope="col">name</th>
+            <th scope="col">actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for series in object_list %}
+        <tr>
+            <td>{{ series.pk }}</td>
+            <td>{{ series.name }}</td>
+            <td><a href="{% url 'cat:series-det' series.pk %}"><i class="bi bi-eye"></i></a><a href="{% url 'cat:series-edit' series.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'cat:series-del' series.pk %}"><i class="bi bi-trash"></i></a></td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+<li><a class="btn btn-primary" href="{% url 'cat:series-add' %}" role="button">Add a series</a></li>
 
 {% endblock body %}

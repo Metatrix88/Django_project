@@ -7,13 +7,24 @@
 {% block body %}
 Date: {{ today }} <br>
 
-<table border='1'>
-    <tr><td>name a publishing house</td><td>description a publishing house</td><td> edit a publishing house</td><td>delete a publishing house</td></tr>
-    {% for publishinghouse in object_list %}
-        <tr><td>{{ publishinghouse.name }}</td><td><a href="{% url 'cat:publishinghouse-det' publishinghouse.pk %}"> description </a></td><td><a href="{% url 'cat:publishinghouse-edit' publishinghouse.pk %}">edit</a></td><td><a href="{% url 'cat:publishinghouse-del' publishinghouse.pk %}">delete</a></td></tr>
-    {% endfor%}
-</table><br>
-<li><a href="{% url 'cat:publishinghouse-add' %}">Add a publishing house</a></li>
-
+<table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">pk</th>
+            <th scope="col">name</th>
+            <th scope="col">actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for publishinghouse in object_list %}
+        <tr>
+            <td>{{ publishinghouse.pk }}</td>
+            <td>{{ publishinghouse.name }}</td>
+            <td><a href="{% url 'cat:publishinghouse-det' publishinghouse.pk %}"><i class="bi bi-eye"></i></a><a href="{% url 'cat:publishinghouse-edit' publishinghouse.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'cat:publishinghouse-del' publishinghouse.pk %}"><i class="bi bi-trash"></i></a></td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+<li><a class="btn btn-primary" href="{% url 'cat:publishinghouse-add' %}" role="button">Add a publishing house</a></li>
 
 {% endblock body %}

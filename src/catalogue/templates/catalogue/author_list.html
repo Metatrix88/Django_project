@@ -7,13 +7,26 @@
 {% block body %}
 Date: {{ today }} <br>
 
-<table border='1'>
-    <tr><td>name an author</td><td>surname an author</td><td>biography an author</td><td> edit an author </td><td>delete an author</td></tr>
-    {% for author in object_list %}
-        <tr><td>{{ author.name }}</td><td>{{ author.surname }}</td><td><a href="{% url 'cat:author-det' author.pk %}"> biography </a></td><td><a href="{% url 'cat:author-edit' author.pk %}">edit</a></td><td><a href="{% url 'cat:author-del' author.pk %}">delete</a></td></tr>
-    {% endfor%}
-</table><br>
-<li><a href="{% url 'cat:author-add' %}">Add an author</a></li>
-
+<table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">pk</th>
+            <th scope="col">name</th>
+            <th scope="col">surname</th>
+            <th scope="col">actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for author in object_list %}
+        <tr>
+            <td>{{ author.pk }}</td>
+            <td>{{ author.name }}</td>
+            <td>{{ author.surname }}</td>
+            <td><a href="{% url 'cat:author-det' author.pk %}"><i class="bi bi-eye"></i></a><a href="{% url 'cat:author-edit' author.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'cat:author-del' author.pk %}"><i class="bi bi-trash"></i></a></td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+<li><a class="btn btn-primary" href="{% url 'cat:author-add' %}" role="button">Add a author</a></li>
 
 {% endblock body %}

@@ -2,10 +2,13 @@
 
 {% block title %} Author - {{ object.name }} {% endblock title %}
 
-{% block header %} Author - {{ object.name }} {% endblock header %}
+{% block header %} Author:  {{ object.name }} {% endblock header %}
 
 {% block body %}
+<form action="" method="get">
+    {% csrf_token %}
     <b>Name:</b> {{ object.name }}<br>
     <b>Surname:</b> {{ object.surname }} <br>
     <b>Biography:</b> {{ object.biography }} <br>
+</form>
 {% endblock body %}

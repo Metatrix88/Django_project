@@ -2,11 +2,11 @@
 
 {% block title %} Delete an author {% endblock title %}
 
-{% block header %} Are you sure? You are about to delete {{ object }} {% endblock header %}
+{% block header %} Are you sure? You are about to delete: {{ object.name }} {% endblock header %}
 
 {% block body %}
 <form action="" method="post">
     {% csrf_token %}
-    <br><input type="submit">
+    <input class="btn btn-danger" type="submit" value="Delete">
 </form>
 {% endblock body %}

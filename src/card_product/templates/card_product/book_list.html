@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} List of books {% endblock title %}
+
+{% block header %} List of books {% endblock header %}
+
+{% block body %}
+Date: {{ today }} <br>
+
+<table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">pk</th>
+            <th scope="col">name</th>
+            <th scope="col">actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in object_list %}
+        <tr>
+            <td>{{ book.pk }}</td>
+            <td>{{ book.name }}</td>
+            <td><a href="{% url 'card:book-det' book.pk %}"><i class="bi bi-eye"></i></a><a href="{% url 'card:book-edit' book.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'card:book-del' book.pk %}"><i class="bi bi-trash"></i></a></td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+<li><a class="btn btn-primary" href="{% url 'card:book-add' %}" role="button">Add a book</a></li>
+
+{% endblock body %}

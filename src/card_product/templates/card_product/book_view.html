@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Book: {{ object.name }} {% endblock title %}
+
+{% block header %} Book:  {{ object.name }} {% endblock header %}
+
+{% block body %}
+<form action="" method="get">
+    {% csrf_token %}
+    <b>Name:</b> {{ object.name }}<br>
+    <b>Image:</b> {{ object.image }} <br>
+    <b>Price:</b> {{ object.price }} <br>
+    <b>Author:</b> {{ author }} <br>
+    <b>Series:</b> {{ object.series }} <br>
+    <b>Genre:</b> {{ genre }} <br>
+    <b>The year of publishing:</b> {{ object.the_year_of_publishing }} <br>
+    <b>Pages:</b> {{ object.pages }} <br>
+    <b>Binding:</b> {{ object.binding }} <br>
+    <b>Format:</b> {{ object.format }} <br>
+    <b>ISBN:</b> {{ object.isbn }} <br>
+    <b>Weight:</b> {{ object.weight}} <br>
+    <b>Age restrictions:</b> {{ object.age_restrictions }} <br>
+    <b>Publishing house:</b> {{ object.publishing_house }} <br>
+    <b>Active:</b> {{ object.active }} <br>
+    <b>Rating:</b> {{ object.rating }} <br>
+    <b>Data register:</b> {{ object.data_register }} <br>
+    <b>Data changes:</b> {{ object.data_changes }} <br>
+</form>
+{% endblock body %}
