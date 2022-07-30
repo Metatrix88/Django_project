@@ -8,6 +8,8 @@ class HomePage(generic.TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['today'] = datetime.now().date
         context['book_list'] = models.Book.objects.all()[:5]
         return context
+
+    def get_success_url(self):
+        return reverse_lazy("buk:buk-home")

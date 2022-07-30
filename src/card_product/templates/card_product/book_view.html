@@ -10,9 +10,9 @@
     <b>Name:</b> {{ object.name }}<br>
     <b>Image:</b> {{ object.image }} <br>
     <b>Price:</b> {{ object.price }} <br>
-    <b>Author:</b> {{ author }} <br>
+    <b>Author:</b> {% for author in object.author.all %} {{ author.name }} {%endfor%} <br>
     <b>Series:</b> {{ object.series }} <br>
-    <b>Genre:</b> {{ genre }} <br>
+    <b>Genre:</b> {% for genre in object.genre.all %} {{ genre.name }} {%endfor%} <br>
     <b>The year of publishing:</b> {{ object.the_year_of_publishing }} <br>
     <b>Pages:</b> {{ object.pages }} <br>
     <b>Binding:</b> {{ object.binding }} <br>

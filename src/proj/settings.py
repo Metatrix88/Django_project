@@ -44,7 +44,8 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'catalogue',
     'card_product',
-    'main_page'
+    'main_page',
+    'user_app'
 ]
 
 STATICFILES_DIRS = [

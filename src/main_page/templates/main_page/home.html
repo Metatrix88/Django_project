@@ -5,8 +5,13 @@
 {% block header %} Welcome to our online bookstore 'Bukvaeshka'{% endblock header %}
 
 {% block body %}
+    It is {% now "jS F Y H:i" %}<br>
+    {{ user }}<br>
+    {% if user.is_superuser %}
+    <h2> Super secret </h2>
+    {% endif %}
     {% for book in book_list %}
-    {{ book_list }}
+    {{ book }}
 
     {% endfor %}
 {% endblock body %}

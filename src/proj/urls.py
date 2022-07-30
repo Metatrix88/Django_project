@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from main_page import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cat/', include('catalogue.urls', namespace='cat')),
     path('card/', include('card_product.urls', namespace='card')),
-    path('bukvaeshka/', views.HomePage.as_view()),
+    path('buk/', include('main_page.urls', namespace='buk')),
+    path('auth/', include('user_app.urls', namespace='user_app')),
 
 
 
