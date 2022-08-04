@@ -7,6 +7,6 @@
 {% block body %}
 <form action="" method="get">
     {% csrf_token %}
-    <b>Description:</b> {{ object.description }}
+    <b>Description:</b> {{ object.description }}<br>
 </form>
 {% endblock body %}

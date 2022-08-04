@@ -9,21 +9,32 @@
 <table class="table table-bordered border-primary">
     <thead>
         <tr>
+            {% if user.is_authenticated %}
             <th scope="col">pk</th>
-            <th scope="col">name</th>
+            {% endif %}
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            {% if user.is_authenticated %}
             <th scope="col">actions</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
         {% for series in object_list %}
         <tr>
+            {% if user.is_authenticated %}
             <td>{{ series.pk }}</td>
+            {% endif %}
             <td>{{ series.name }}</td>
-            <td><a href="{% url 'cat:series-det' series.pk %}"><i class="bi bi-eye"></i></a><a href="{% url 'cat:series-edit' series.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'cat:series-del' series.pk %}"><i class="bi bi-trash"></i></a></td>
+            <td><a href="{% url 'cat:series-det' series.pk %}"><i class="bi bi-eye"></i></a></td>
+            {% if user.is_authenticated %}
+            <td><a href="{% url 'cat:series-edit' series.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'cat:series-del' series.pk %}"><i class="bi bi-trash"></i></a></td>
+            {% endif %}
         </tr>
         {% endfor%}
     </tbody>
 </table>
+{% if user.is_authenticated %}
 <li><a class="btn btn-primary" href="{% url 'cat:series-add' %}" role="button">Add a series</a></li>
-
+{% endif %}
 {% endblock body %}

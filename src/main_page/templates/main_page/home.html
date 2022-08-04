@@ -6,12 +6,27 @@
 
 {% block body %}
     It is {% now "jS F Y H:i" %}<br>
-    {{ user }}<br>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
     {% if user.is_superuser %}
     <h2> Super secret </h2>
     {% endif %}
-    {% for book in book_list %}
-    {{ book }}
 
-    {% endfor %}
+    <h1> Our news </h1>
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" style="width: 10rem;">
+            {% for book in book_list %}
+            <div class="carousel-item  {% if forloop.counter == 1 %}active {% endif %} ">
+            <img src="{{ book.image.url}}" class="d-block w-100" alt="...">
+          </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+</form>
 {% endblock body %}

@@ -2,17 +2,38 @@
 
 {% block title %} List of books {% endblock title %}
 
-{% block header %} List of books {% endblock header %}
+{% block header %} Our books {% endblock header %}
 
 {% block body %}
 
+<p>
+    <div class="container text-center">
+        <div class="row">
+            {% for book in object_list %}
+            <div class="col">
+                <div class="card" style="width: 15rem; ">
+                    <img src="{{ book.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.name }} </h5>
+                        <a href="{% url 'card:book-det' book.pk %}"><i class="bi bi-eye"></i></a>
+                        <a href="#"></a><i class="bi bi-cart-check"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</p>
 
+
+{% if user.is_authenticated %}
 <table class="table table-bordered border-primary">
     <thead>
         <tr>
             <th scope="col">pk</th>
-            <th scope="col">name</th>
-            <th scope="col">actions</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -20,11 +41,13 @@
         <tr>
             <td>{{ book.pk }}</td>
             <td>{{ book.name }}</td>
-            <td><a href="{% url 'card:book-det' book.pk %}"><i class="bi bi-eye"></i></a><a href="{% url 'card:book-edit' book.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'card:book-del' book.pk %}"><i class="bi bi-trash"></i></a></td>
+            <td><a href="{% url 'card:book-det' book.pk %}"><i class="bi bi-eye"></i></a></td>
+            <td><a href="{% url 'card:book-edit' book.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'card:book-del' book.pk %}"><i class="bi bi-trash"></i></a></td>
         </tr>
         {% endfor%}
     </tbody>
 </table>
-<li><a class="btn btn-primary" href="{% url 'card:book-add' %}" role="button">Add a book</a></li>
+    <li><a class="btn btn-primary" href="{% url 'card:book-add' %}" role="button">Add a book</a></li>
+{% endif %}
 
 {% endblock body %}

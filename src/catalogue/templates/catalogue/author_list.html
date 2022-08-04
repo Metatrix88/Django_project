@@ -9,23 +9,32 @@
 <table class="table table-bordered border-primary">
     <thead>
         <tr>
+            {% if user.is_authenticated %}
             <th scope="col">pk</th>
-            <th scope="col">name</th>
-            <th scope="col">surname</th>
+            {% endif %}
+            <th scope="col">Name</th>
+            <th scope="col">Biography</th>
+            {% if user.is_authenticated %}
             <th scope="col">actions</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
         {% for author in object_list %}
         <tr>
+            {% if user.is_authenticated %}
             <td>{{ author.pk }}</td>
+            {% endif %}
             <td>{{ author.name }}</td>
-            <td>{{ author.surname }}</td>
-            <td><a href="{% url 'cat:author-det' author.pk %}"><i class="bi bi-eye"></i></a><a href="{% url 'cat:author-edit' author.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'cat:author-del' author.pk %}"><i class="bi bi-trash"></i></a></td>
+            <td><a href="{% url 'cat:author-det' author.pk %}"><i class="bi bi-eye"></i></a></td>
+            {% if user.is_authenticated %}
+            <td><a href="{% url 'cat:author-edit' author.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'cat:author-del' author.pk %}"><i class="bi bi-trash"></i></a></td>
+            {% endif %}
         </tr>
         {% endfor%}
     </tbody>
 </table>
+{% if user.is_authenticated %}
 <li><a class="btn btn-primary" href="{% url 'cat:author-add' %}" role="button">Add a author</a></li>
-
+{% endif %}
 {% endblock body %}

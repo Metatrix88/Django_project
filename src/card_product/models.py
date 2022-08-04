@@ -4,10 +4,11 @@ from datetime import datetime
 class Book(models.Model):
     name = models.CharField(
         verbose_name="Book name",
-        max_length=30
+        max_length=50
     )
     image = models.ImageField(
         verbose_name="Image book",
+        upload_to='uploads/%Y/%m/%d/',
         blank=True,
         null=True
     )

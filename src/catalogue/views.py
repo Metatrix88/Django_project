@@ -2,8 +2,10 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from datetime import datetime
+from card_product.models import Book
 from . import models
 from . import forms
+
 
 # Create your views here.
 
@@ -13,7 +15,9 @@ class GenreListView(generic.ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        #context['book_list'] = models.Book.objects.filter(genre = "name.genre")
         return context
+
 
     def get_queryset(self):
         qs = self.model.objects.all()
