@@ -8,15 +8,28 @@
 
 <p>
     <div class="container text-center">
-        <div class="row">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
             {% for book in object_list %}
             <div class="col">
-                <div class="card" style="width: 15rem; ">
+                <div class="card" style="width: 15rem;">
                     <img src="{{ book.image.url }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ book.name }} </h5>
-                        <a href="{% url 'card:book-det' book.pk %}"><i class="bi bi-eye"></i></a>
-                        <a href="#"></a><i class="bi bi-cart-check"></i></a>
+                        <p class="card-text">{{ book.price }} Byn</p>
+                        <form action="{% url 'orders:add-to-cart' %}" method="get">
+                            <div class="form-group row">
+                                <input type="hidden" name="book_id" value="{{ book.pk }}">
+                                <div class="col-sm-2">
+                                <a href="{% url 'card:book-det' book.pk %}"><i class="bi bi-eye-fill"></i></a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="submit" class="btn btn-primary" value="Add to Cart">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" name="quantity" min="1" max="1000" step="1" value="1">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -27,7 +40,7 @@
 
 
 {% if user.is_authenticated %}
-<table class="table table-bordered border-primary">
+<table class="table table-primary">
     <thead>
         <tr>
             <th scope="col">pk</th>

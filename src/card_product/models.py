@@ -12,8 +12,10 @@ class Book(models.Model):
         blank=True,
         null=True
     )
-    price = models.IntegerField(
+    price = models.DecimalField(
         verbose_name="Price book (byn)",
+        decimal_places=2,
+        max_digits=5,
         blank=True,
         null=True
     )

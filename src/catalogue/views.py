@@ -18,11 +18,9 @@ class GenreListView(generic.ListView):
         #context['book_list'] = models.Book.objects.filter(genre = "name.genre")
         return context
 
-
     def get_queryset(self):
         qs = self.model.objects.all()
         return qs
-
 
 class GenreDetailView(generic.DetailView):
     template_name = 'catalogue/genre_view.html'

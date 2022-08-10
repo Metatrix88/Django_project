@@ -25,6 +25,7 @@ urlpatterns = [
     path('card/', include('card_product.urls', namespace='card')),
     path('buk/', include('main_page.urls', namespace='buk')),
     path('auth/', include('user_app.urls', namespace='user_app')),
+    path('orders/', include('orders.urls', namespace='orders')),
 
 ]
 

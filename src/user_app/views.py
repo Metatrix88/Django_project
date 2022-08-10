@@ -7,7 +7,7 @@ from django.contrib.auth import views as auth_views
 
 class LogView(auth_views.LoginView):
     template_name="user_app/login.html"
-
+    next_page="buk:buk-home"
 
 # def login_view(request):
 #     if request.method =="GET":

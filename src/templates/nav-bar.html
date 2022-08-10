@@ -9,7 +9,7 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'buk:buk-home' %}">Главная</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'buk:buk-home' %}">To main</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'card:book-list' %}">All Book</a>
@@ -26,20 +26,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'cat:publishinghouse-list' %}">All Publishing house</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Отключен</a>
-              </li>
             </ul>
 
             <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
-              <button class="btn btn-outline-success" type="submit">Поиск</button>
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit"> Search </button>
             </form>
-
             <div class="text-end">
-              <button type="button" class="btn btn-outline-light me-2"><a href="#"></a><i class="bi bi-cart-check"></i></a></button>
-              <button type="button" class="btn btn-outline-primary me-2">Login</button>
-              <button type="button" class="btn btn-primary">Sign-up</button>
+              <a class="btn btn-outline-primary me-2" href="{% url 'orders:add-to-cart' %}" </a><i class="bi bi-cart-check"></i>
+              <a class="btn btn-outline-primary me-2" href="{% url 'user_app:login' %}" role="button">Log In</a>
             </div>
 
           </div>

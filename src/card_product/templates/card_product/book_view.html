@@ -5,16 +5,24 @@
 {% block header %} Book:  {{ object.name }} {% endblock header %}
 
 {% block body %}
-<form action="" method="get">
-    {% csrf_token %}
-    <div class="card" style="width: 18rem;">
-        <img src="{{ object.image.url }}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{ object.name }}</h5>
-          <p class="card-text">{% for genre in object.genre.all %} {{ genre.name }} {% endfor %}</p>
-          <a href="#" class="btn btn-primary">Order</a>
+<div class="card" style="width: 15rem;">
+  <img src="{{ object.image.url }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ object.name }}</h5>
+    <p class="card-text">{{ object.price }} Byn</p>
+    <form action="{% url 'orders:add-to-cart' %}" method="get">
+      <input type="hidden" name="book_id" value="{{ object.pk }}">
+      <div class="form-group row">
+        <div class="col-sm-8">
+          <input type="submit" class="btn btn-primary" value="Add to Cart">
         </div>
-    </div>
+        <div class="col-sm-4">
+          <input type="number" class="form-control" name="quantity" min="1" max="1000" step="1" value="1">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
     <b>Name:</b> {{ object.name }}<br>
     <b>Price (byn):</b> {{ object.price }} byn <br>
     <b>Author:</b> {% for author in object.author.all %} {{ author.name }} {% endfor %} <br>
@@ -28,9 +36,9 @@
     <b>Weight (gram):</b> {{ object.weight}} <br>
     <b>Age restrictions +:</b> {{ object.age_restrictions }} <br>
     <b>Publishing house:</b> {{ object.publishing_house.name }} <br>
+    <b>Quantity:</b> {{ object.quantity }} <br>
     <b>Active:</b> {{ object.active }} <br>
     <b>Rating:</b> {{ object.rating }} <br>
     <b>Data register:</b> {{ object.data_register }} <br>
     <b>Data changes:</b> {{ object.data_changes }} <br>
-</form>
 {% endblock body %}

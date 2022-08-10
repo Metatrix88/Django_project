@@ -46,7 +46,8 @@ INSTALLED_APPS += [
     'catalogue',
     'card_product',
     'main_page',
-    'user_app'
+    'user_app',
+    'orders'
 ]
 
 STATICFILES_DIRS = [
@@ -135,7 +136,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/anddavidovich/Django_project/static'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = 'D:\home\anddavidovich\Django_project\media'
+MEDIA_ROOT = '/home/anddavidovich/Django_project/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
