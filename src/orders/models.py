@@ -59,7 +59,6 @@ class BookInCart(models.Model):
         verbose_name='Created',
         auto_now_add=True,
         auto_now=False
-
     )
     updated_date = models.DateTimeField(
         verbose_name='Updated',
@@ -73,6 +72,27 @@ class Order(models.Model):
         on_delete=models.PROTECT,
         related_name='orders',
         verbose_name='Cart'
+    )
+    name_and_surname = models.CharField(
+        verbose_name="Name and surname of the recipient",
+        blank=True,
+        null=True,
+        max_length=60
+    )
+    phone = models.IntegerField(
+        verbose_name="Phone",
+        blank=True,
+        null=True
+    )
+    delivery_address = models.TextField(
+        verbose_name="Delivery address",
+        blank=True,
+        null=True
+    )
+    additional_information = models.TextField(
+        verbose_name="Additional Information",
+        blank=True,
+        null=True
     )
     created_date = models.DateTimeField(
         verbose_name='Created',

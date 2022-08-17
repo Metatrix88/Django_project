@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Book Search {% endblock title %}
+
+{% block header %} Book search by title {% endblock header %}
+
+{% block body %}
+    <form action="" method="get">
+        <input type="text" name="search_query" placeholder="Enter something to search" value="{{ search_query }}">
+        <input type="submit" value="OK" class="btn btn-primary">
+    </form>
+
+    <h2>Results</h2>
+
+    {% for book in object_list %}
+    <a href="{% url 'card:book-det' book.pk %}">{{ book.name }}</a><br>
+    {% endfor %}
+{% endblock body %}

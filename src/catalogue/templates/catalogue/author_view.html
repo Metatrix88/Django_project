@@ -6,8 +6,8 @@
 
 {% block body %}
 <form action="" method="get">
-    {% csrf_token %}
     <b>Name:</b> {{ object.name }}<br>
-    <b>Biography:</b> {{ object.biography }} <br>
+    <b>Biography:</b> {{ object.biography }} <br><br>
+    <b>Books written by the author:</b><br> {% for book in object.books.all %} <a href="{% url 'card:book-det' book.pk %}">{{ book.name }}.</a><br> {% endfor %}
 </form>
 {% endblock body %}

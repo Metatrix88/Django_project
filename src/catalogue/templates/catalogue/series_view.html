@@ -5,5 +5,6 @@
 {% block header %} Series: {{ object.name }} {% endblock header %}
 
 {% block body %}
-    <b>Description:</b> {{ object.description }}
+    <b>Description:</b> {{ object.description }}<br><br>
+    <b>All books in this series:</b><br> {% for book in object.books.all %} <a href="{% url 'card:book-det' book.pk %}">{{ book.name }}.</a><br> {% endfor %}
 {% endblock body %}

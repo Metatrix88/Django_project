@@ -76,3 +76,22 @@ class BookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = models.Book
     form_class = forms.AddBookForm
     success_url = reverse_lazy("card:book-list")
+
+class BookSearch(generic.ListView):
+    template_name = 'card_product/book_search.html'
+    model = models.Book
+
+
+    def get_queryset(self, *args, **kwargs):
+        q = self.request.GET.get('search_query')
+        if q:
+            qs = self.model.objects.filter(name__contains=q)
+        else:
+            qs = []
+        return qs
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        q = self.request.GET.get('search_query', "")
+        context['search_query'] = q
+        return context
