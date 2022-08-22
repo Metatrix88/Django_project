@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -43,7 +44,11 @@ class UpdateCart(generic.DetailView):
         action_type = self.request.GET.get('action_type')
         if action_type == 'Order':
             order = Order.objects.create(
-                cart=book_in_cart.cart
+                cart=book_in_cart.cart,
+                name_and_surname = self.request.GET.get('name_and_surname'),
+                phone = self.request.GET.get('phone'),
+                delivery_address = self.request.GET.get('delivery_address'),
+                additional_information = self.request.GET.get('additional_information')
             )
             self.request.session.delete('cart')
         return cart
@@ -87,3 +92,30 @@ class AddToCart(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         context['cart'] = cart
         return context
+
+class OrderListView(LoginRequiredMixin, generic.ListView):
+    template_name = 'orders/order_list.html'
+    login_url = reverse_lazy("user_app:login")
+    redirect_field_name = 'next'
+    model = Order
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        return context
+
+    def get_queryset(self):
+        qs = self.model.objects.all()
+        return qs
+
+class OrderDetailView(LoginRequiredMixin, generic.DetailView):
+    template_name = 'orders/order_view.html'
+    login_url = reverse_lazy("user_app:login")
+    redirect_field_name = 'next'
+    model = Order
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy("orders:order-det", kwargs= {'pk': self.object.pk})

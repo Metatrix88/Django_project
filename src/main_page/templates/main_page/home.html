@@ -2,21 +2,23 @@
 
 {% block title %} Bukvaeshka {% endblock title %}
 
-{% block header %} Welcome to our online bookstore 'Bukvaeshka'{% endblock header %}
+{% block header %}<p class="text-center"> Welcome to our online bookstore 'Bukvaeshka' </p> {% endblock header %}
 
 {% block body %}
-    It is {% now "jS F Y H:i" %}<br>
 
-    <h1> Our news </h1>
-
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner" style="width: 10rem;">
-            {% for book in book_list %}
-            <div class="carousel-item  {% if forloop.counter == 1 %}active {% endif %} ">
-            <img src="{{ book.image.url}}" class="d-block w-100" alt="...">
+    <h1><p class="text-center"> New books are already in stock </p></h1>
+    <div class="col-lg-10 d-flex justify-content-center">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" style="width: 10rem;">
+                {% for book in book_list %}
+                <div class="carousel-item  {% if forloop.counter == 1 %}active {% endif %} ">
+                <img src="{{ book.image.url}}" class="d-block w-100" alt="...">
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
+<br><br><br><br>
+<br>It is {% now "jS F Y H:i" %}
 
 {% endblock body %}

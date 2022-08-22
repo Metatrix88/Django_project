@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete a status {% endblock title %}
+
+{% block header %} Are you sure? You are about to delete: {{ object.name }} {% endblock header %}
+
+{% block body %}
+<form action="" method="post">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Delete"> <a class="btn btn-primary" href="{% url 'cat:status-list' %}" role="button">Back</a>
+</form>
+{% endblock body %}

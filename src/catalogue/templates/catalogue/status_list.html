@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} List of status {% endblock title %}
+
+{% block header %}<p class="text-center"> List of status </p>{% endblock header %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th scope="col">pk</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for status in object_list %}
+        <tr>
+            <td>{{ status.pk }}</td>
+            <td>{{ status.name }}</td>
+            <td><a href="{% url 'cat:status-det' status.pk %}"><i class="bi bi-eye"></i></a></td>
+            <td><a href="{% url 'cat:status-edit' status.pk %}"><i class="bi bi-pencil-square"></i></a><a href="{% url 'cat:status-del' status.pk %}"><i class="bi bi-trash"></i></a></td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+<li><a class="btn btn-primary" href="{% url 'cat:status-add' %}" role="button">Add a status</a></li>
+{% endif %}
+{% endblock body %}

@@ -26,4 +26,10 @@ urlpatterns = [
     path('publishinghouse_add/', views.PublishingHouseAddView.as_view(), name="publishinghouse-add"),
     path('publishinghouse_delete/<int:pk>/', views.PublishingHouseDeleteView.as_view(), name="publishinghouse-del"),
     path('publishinghouse_edit/<int:pk>/', views.PublishingHouseUpdateView.as_view(), name="publishinghouse-edit"),
+
+    path('status_list/', views.StatusListView.as_view(), name="status-list"),
+    path('status/<int:pk>/', views.StatusDetailView.as_view(), name="status-det"),
+    path('status_add/', views.StatusAddView.as_view(), name="status-add"),
+    path('status_delete/<int:pk>/', views.StatusDeleteView.as_view(), name="status-del"),
+    path('status_edit/<int:pk>/', views.StatusUpdateView.as_view(), name="status-edit"),
 ]

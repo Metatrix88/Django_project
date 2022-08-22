@@ -57,3 +57,16 @@ class PublishingHouse(models.Model):
     )
     def __str__(self) -> str:
         return str(self.pk) + " " + self.name
+
+class Status(models.Model):
+    name = models.CharField(
+        verbose_name="Status",
+        max_length=30
+    )
+    description = models.TextField(
+        verbose_name="Status",
+        blank=True,
+        null=True
+    )
+    def __str__(self) -> str:
+        return str(self.pk) + " " + self.name

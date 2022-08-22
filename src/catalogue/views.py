@@ -195,3 +195,49 @@ class PublishingHouseUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = models.PublishingHouse
     form_class = forms.AddPublishingHouseForm
     success_url = reverse_lazy("cat:publishinghouse-list")
+
+class StatusListView(generic.ListView):
+    template_name = 'catalogue/status_list.html'
+    model = models.Status
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        return context
+
+    def get_queryset(self):
+        qs = self.model.objects.all()
+        return qs
+
+class StatusDetailView(generic.DetailView):
+    template_name = 'catalogue/status_view.html'
+    model = models.Status
+
+    def get_success_url(self):
+        return reverse_lazy("cat:status-det", kwargs= {'pk': self.object.pk})
+
+class StatusAddView(LoginRequiredMixin, generic.CreateView):
+    template_name = 'catalogue/status_add.html'
+    login_url = reverse_lazy("user_app:login")
+    redirect_field_name = 'next'
+    model = models.Status
+    form_class = forms.AddStatusForm
+
+    def get_success_url(self):
+        return reverse_lazy("cat:status-list")
+
+class StatusDeleteView(LoginRequiredMixin, generic.DeleteView):
+    template_name = 'catalogue/status_delete.html'
+    login_url = reverse_lazy("user_app:login")
+    redirect_field_name = 'next'
+    model = models.Status
+
+    def get_success_url(self):
+        return reverse_lazy("cat:status-list")
+
+class StatusUpdateView(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'catalogue/status_update.html'
+    login_url = reverse_lazy("user_app:login")
+    redirect_field_name = 'next'
+    model = models.Status
+    form_class = forms.AddStatusForm
+    success_url = reverse_lazy("cat:status-list")

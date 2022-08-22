@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Update a status {% endblock title %}
+
+{% block header %} Update a status: {{ object.name }} {% endblock header %}
+
+{% block body %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input class="btn btn-primary" type="submit" value="Update">
+</form>
+{% endblock body %}

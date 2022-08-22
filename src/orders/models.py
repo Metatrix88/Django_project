@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from card_product import models as cp_models
+from catalogue import models as cat_models
 # Create your models here.
 
 User = get_user_model()
@@ -93,6 +94,14 @@ class Order(models.Model):
         verbose_name="Additional Information",
         blank=True,
         null=True
+    )
+    status = models.ForeignKey(
+        cat_models.Status,
+        on_delete=models.PROTECT,
+        related_name='orders',
+        verbose_name='Status',
+        null=True,
+        blank=True
     )
     created_date = models.DateTimeField(
         verbose_name='Created',

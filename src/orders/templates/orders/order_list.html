@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} List of orders {% endblock title %}
+
+{% block header %} Orders {% endblock header %}
+
+{% block body %}
+
+
+{% if user.is_authenticated %}
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th scope="col">pk</th>
+            <th scope="col">Name and surname customer</th>
+            <th scope="col">Take to work</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for orders in object_list %}
+        <tr>
+            <td>{{ orders.pk }}</td>
+            <td>{{ orders.name_and_surname }}</td>
+            <td><a href="{% url 'orders:order-det' orders.pk %}"><i class="bi bi-info-square-fill"></i></a></td>
+            <td>status</td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock body %}

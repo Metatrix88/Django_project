@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Add a status {% endblock title %}
+
+{% block header %} Add a status {% endblock header %}
+
+{% block body %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input class="btn btn-primary" type="submit" value="Add">
+</form>
+{% endblock body %}

@@ -29,6 +29,14 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'card:book-search' %}">Book Search</a>
               </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'orders:order-list' %}">Order list</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'cat:status-list' %}">Status list</a>
+              </li>
+              {% endif %}
             </ul>
 
 

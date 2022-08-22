@@ -24,3 +24,8 @@ class AddPublishingHouseForm(forms.ModelForm):
     class Meta:
         model = models.PublishingHouse
         fields = '__all__'
+
+class AddStatusForm(forms.ModelForm):
+    class Meta:
+        model = models.Status
+        fields = '__all__'
