@@ -12,6 +12,7 @@
     <b>Additional information:</b> {{ object.additional_information }} <br>
     <b>Books:</b>
     <li class="list-group-item"> {% for book in object.cart.goods.all %} {{book.book.name}} - {{book.quantity}} pc.<br> {%endfor%} </li><br>
+    <b>Status:</b> {{ object.status.name}} <br>
 
 
 {% endblock body %}

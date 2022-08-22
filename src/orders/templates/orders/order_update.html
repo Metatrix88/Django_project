@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Update an order {% endblock title %}
+
+{% block header %} Update an order: {{ object.name }} {% endblock header %}
+
+{% block body %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input class="btn btn-primary" type="submit" value="Save">
+</form>
+{% endblock body %}

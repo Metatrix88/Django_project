@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from . import forms
 
 from card_product.models import Book
 from . models import Cart, BookInCart, Order
@@ -93,10 +94,8 @@ class AddToCart(generic.TemplateView):
         context['cart'] = cart
         return context
 
-class OrderListView(LoginRequiredMixin, generic.ListView):
+class OrderListView(generic.ListView):
     template_name = 'orders/order_list.html'
-    login_url = reverse_lazy("user_app:login")
-    redirect_field_name = 'next'
     model = Order
 
     def get_context_data(self, *args, **kwargs):
@@ -119,3 +118,30 @@ class OrderDetailView(LoginRequiredMixin, generic.DetailView):
 
     def get_success_url(self):
         return reverse_lazy("orders:order-det", kwargs= {'pk': self.object.pk})
+
+class OrderUpdateView(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'orders/order_update.html'
+    login_url = reverse_lazy("user_app:login")
+    redirect_field_name = 'next'
+    model = Order
+    form_class = forms.UpdateOrderForm
+    success_url = reverse_lazy("orders:order-list")
+
+class OrderSearch(generic.ListView):
+    template_name = 'orders/order_search.html'
+    model = Order
+
+
+    def get_queryset(self, *args, **kwargs):
+        q = self.request.GET.get('search_query')
+        if q:
+            qs = self.model.objects.filter(name__contains=q)
+        else:
+            qs = []
+        return qs
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        q = self.request.GET.get('search_query', "")
+        context['search_query'] = q
+        return context

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Order Search {% endblock title %}
+
+{% block header %} Order search by title {% endblock header %}
+
+{% block body %}
+    <form action="" method="get">
+        <input type="text" name="search_query" placeholder="Enter something to search" value="{{ search_query }}">
+        <input type="submit" value="OK" class="btn btn-primary">
+    </form>
+
+    <h2>Results</h2>
+
+    {% for order in object_list %}
+    <a href="{% url 'orders:order-det' orders.pk %}">{{ order.name_and_surname }}</a><br>
+    {% endfor %}
+{% endblock body %}

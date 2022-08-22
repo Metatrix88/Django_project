@@ -6,15 +6,15 @@
 
 {% block body %}
 
-
-{% if user.is_authenticated %}
 <table class="table table-primary">
     <thead>
         <tr>
             <th scope="col">pk</th>
             <th scope="col">Name and surname customer</th>
             <th scope="col">Take to work</th>
+            {% if user.is_authenticated %}
             <th scope="col">Status</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -23,11 +23,13 @@
             <td>{{ orders.pk }}</td>
             <td>{{ orders.name_and_surname }}</td>
             <td><a href="{% url 'orders:order-det' orders.pk %}"><i class="bi bi-info-square-fill"></i></a></td>
-            <td>status</td>
+            {% if user.is_authenticated %}
+            <td><a href="{% url 'orders:order-edit' orders.pk %}"><i class="bi bi-pencil-square"></i></a></td>
+            {% endif %}
         </tr>
         {% endfor%}
     </tbody>
 </table>
-{% endif %}
+
 
 {% endblock body %}
