@@ -134,9 +134,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/anddavidovich/Django_project/static'
+STATIC_ROOT = '/home/andrey/Python/static'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/home/anddavidovich/Django_project/media'
+MEDIA_ROOT = '/home/andrey/Python/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
